@@ -77,6 +77,7 @@
     "test/plugins/_index.js",
     "test/regression.js",
     "test/svg2js/_index.js",
-    "test/svgo/_index.js"
+    "test/svgo/_index.js",
+    "lib/svgo/plugins.js"
   ]
 }
