@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeMetadata';
+
 exports.type = 'perItem';
 
 exports.active = true;

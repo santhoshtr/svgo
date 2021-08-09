@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeStyleElement';
+
 exports.type = 'perItem';
 
 exports.active = false;

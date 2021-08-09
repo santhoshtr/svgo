@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeScriptElement';
+
 exports.type = 'perItem';
 
 exports.active = false;

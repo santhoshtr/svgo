@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeRasterImages';
+
 exports.type = 'perItem';
 
 exports.active = false;

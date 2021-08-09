@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeXMLProcInst';
+
 exports.type = 'perItem';
 
 exports.active = true;

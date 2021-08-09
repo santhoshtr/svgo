@@ -2,6 +2,8 @@
 
 const { stringifyPathData } = require('../lib/path.js');
 
+exports.name = 'convertShapeToPath';
+
 exports.type = 'perItem';
 
 exports.active = true;

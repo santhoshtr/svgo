@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'convertEllipseToCircle';
+
 exports.type = 'perItem';
 
 exports.active = true;

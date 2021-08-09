@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeEmptyText';
+
 exports.type = 'perItem';
 
 exports.active = true;

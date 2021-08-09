@@ -14,7 +14,7 @@ describe('config', function () {
       { name: 'removeDoctype', active: false },
       { name: 'convertColors', params: { shorthex: false } },
       { name: 'removeRasterImages', params: { param: true } },
-    ].map((plugin) => resolvePluginConfig(plugin, {}));
+    ].map((plugin) => resolvePluginConfig(plugin));
     const removeDoctype = getPlugin('removeDoctype', plugins);
     const convertColors = getPlugin('convertColors', plugins);
     const removeRasterImages = getPlugin('removeRasterImages', plugins);
@@ -63,16 +63,13 @@ describe('config', function () {
   describe('replace default config with custom', function () {
     const config = {
       multipass: true,
-      floatPrecision: 2,
       plugins: [
         'convertPathData',
         { name: 'cleanupNumericValues' },
         { name: 'customPlugin', fn: () => {} },
       ],
     };
-    const plugins = config.plugins.map((plugin) =>
-      resolvePluginConfig(plugin, config)
-    );
+    const plugins = config.plugins.map((plugin) => resolvePluginConfig(plugin));
     const cleanupNumericValues = getPlugin('cleanupNumericValues', plugins);
     const convertPathData = getPlugin('convertPathData', plugins);
     const customPlugin = getPlugin('customPlugin', plugins);
@@ -89,12 +86,6 @@ describe('config', function () {
       expect(cleanupNumericValues.active).to.equal(true);
       expect(convertPathData.active).to.equal(true);
     });
-
-    it('plugins should inherit floatPrecision top level config', function () {
-      expect(cleanupNumericValues.params.floatPrecision).to.be.equal(2);
-      expect(convertPathData.params.floatPrecision).to.be.equal(2);
-      expect(customPlugin.params.floatPrecision).to.be.equal(2);
-    });
   });
 
   describe('custom plugins', function () {
@@ -105,7 +96,7 @@ describe('config', function () {
           type: 'perItem',
           fn: function () {},
         },
-      ].map((plugin) => resolvePluginConfig(plugin, {}));
+      ].map((plugin) => resolvePluginConfig(plugin));
       const customPlugin = getPlugin('aCustomPlugin', plugins);
 
       it('custom plugin should be enabled', function () {
@@ -124,7 +115,7 @@ describe('config', function () {
           type: 'perItem',
           fn: function () {},
         },
-      ].map((plugin) => resolvePluginConfig(plugin, {}));
+      ].map((plugin) => resolvePluginConfig(plugin));
       const customPlugin = getPlugin('aCustomPlugin', plugins);
 
       it('config.plugins should have length 1', function () {
@@ -168,20 +159,17 @@ describe('config', function () {
     });
     it('should activate inactive by default plugins', () => {
       const removeAttrsPlugin = resolvePluginConfig(
-        extendedPlugins[removeAttrsIndex],
-        {}
+        extendedPlugins[removeAttrsIndex]
       );
       const cleanupIDsPlugin = resolvePluginConfig(
-        extendedPlugins[cleanupIDsIndex],
-        {}
+        extendedPlugins[cleanupIDsIndex]
       );
       expect(removeAttrsPlugin.active).to.equal(true);
       expect(cleanupIDsPlugin.active).to.equal(true);
     });
     it('should leave not extended inactive plugins to be inactive', () => {
       const inactivePlugin = resolvePluginConfig(
-        extendedPlugins.find((item) => item.name === 'addClassesToSVGElement'),
-        {}
+        extendedPlugins.find((item) => item.name === 'addClassesToSVGElement')
       );
       expect(inactivePlugin.active).to.equal(false);
     });
@@ -189,18 +177,6 @@ describe('config', function () {
       expect(extendedPlugins[extendedPlugins.length - 1].name).to.equal(
         'customPlugin'
       );
-    });
-    it('should pass global floatPrecision when plugin one not specified', () => {
-      const convertPathDataPlugin = resolvePluginConfig(
-        extendedPlugins.find((item) => item.name === 'convertPathData'),
-        { floatPrecision: 1 }
-      );
-      const convertTransformPlugin = resolvePluginConfig(
-        extendedPlugins.find((item) => item.name === 'convertTransform'),
-        {}
-      );
-      expect(convertPathDataPlugin.params.floatPrecision).to.equal(1);
-      expect(convertTransformPlugin.params.floatPrecision).to.equal(3);
     });
   });
 

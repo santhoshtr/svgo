@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeComments';
+
 exports.type = 'perItem';
 
 exports.active = true;

@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeTitle';
+
 exports.type = 'perItem';
 
 exports.active = true;

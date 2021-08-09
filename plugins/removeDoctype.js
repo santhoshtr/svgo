@@ -1,5 +1,7 @@
 'use strict';
 
+exports.name = 'removeDoctype';
+
 exports.type = 'perItem';
 
 exports.active = true;
